@@ -1,0 +1,17 @@
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\mod.yaml
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\mod_info.yaml
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\Ore Maker.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\Ore Maker.pdb
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\0Harmony.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\Assembly-CSharp-firstpass.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\Assembly-CSharp.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\UnityEngine.CoreModule.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\UnityEngine.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\UnityEngine.UI.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\UnityEngine.ImageConversionModule.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\bin\Debug\UnityEngine.TextCoreModule.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\obj\Debug\Ore Maker.csproj.AssemblyReference.cache
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\obj\Debug\Ore Maker.csproj.CoreCompileInputs.cache
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\obj\Debug\Ore Maker.csproj.CopyComplete
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\obj\Debug\Ore Maker.dll
+D:\Daten\Github\ONI Mods\ONI-Ore_Maker\Ore Maker\obj\Debug\Ore Maker.pdb
