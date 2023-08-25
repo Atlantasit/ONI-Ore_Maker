@@ -43,7 +43,8 @@ namespace OreMakerConfig
 
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
         {
-            base.ConfigureBuildingTemplate(go, prefab_tag);
+            go.GetComponent.< KPrefabID > ().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
+            go.AddOrGet<BuildingComplete>().isManuallyOperated = false;
         }
     }
 }
