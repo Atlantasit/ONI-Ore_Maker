@@ -61,6 +61,7 @@ public class GourmetCookingStationConfig : IBuildingConfig
     fabricator.inStorage.SetDefaultStoredItemModifiers(GourmetCookingStationConfig.GourmetCookingStationStoredItemModifiers);
     fabricator.buildStorage.SetDefaultStoredItemModifiers(GourmetCookingStationConfig.GourmetCookingStationStoredItemModifiers);
     fabricator.outStorage.SetDefaultStoredItemModifiers(GourmetCookingStationConfig.GourmetCookingStationStoredItemModifiers);
+  
     ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
     conduitConsumer.capacityTag = this.FUEL_TAG;
     conduitConsumer.capacityKG = 10f;
