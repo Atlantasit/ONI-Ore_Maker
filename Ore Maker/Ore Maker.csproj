@@ -62,7 +62,7 @@
   <ItemGroup>
     <Compile Include="OreMaker.cs" />
     <Compile Include="OreMakerConfig.cs" />
-    <Compile Include="Patches.cs" />
+    <Compile Include="OreMakerPatche.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

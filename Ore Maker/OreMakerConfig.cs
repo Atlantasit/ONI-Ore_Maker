@@ -15,7 +15,7 @@ namespace OreMakerConfig
         public const float WaterStorage_Capacity = 250f;
         public const float OxyStorage_Capacity = 10f;
 
-        
+
 
 
         public override BuildingDef CreateBuildingDef()
@@ -50,7 +50,7 @@ namespace OreMakerConfig
         {
             go.GetComponent.< KPrefabID > ().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
             go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
-            go.AddOrGet<OreMaker.OreMaker>().overpressureMass = 10f;
+            go.AddOrGet<OreMaker.OreMake>().overpressureMass = 10f;
             OreMaker fabricator = go.AddOrGet<OreMaker>();
 
             ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
@@ -89,33 +89,35 @@ namespace OreMakerConfig
             });
 
         }
-            public void ConfigureRecipes()
-            
-        {       // Iron Ore Recipe
-              ComplexRecipe.RecipeElement[] recipeElementArray1 = new ComplexRecipe.RecipeElement[2]
-              {
-                new ComplexRecipe.RecipeElement((Tag) "GrilledPrickleFruit", 2f),
-                new ComplexRecipe.RecipeElement((Tag) SpiceNutConfig.ID, 2f)
+        public void ConfigureRecipes()
+        {
+            // Iron Ore Recipe
+            ComplexRecipe.RecipeElement[] recipeElementArray1 = new ComplexRecipe.RecipeElement[3]
+            {
+                new ComplexRecipe.RecipeElement(material: "Iron".ToTag(), 90f),
+                new ComplexRecipe.RecipeElement("Oxygen".ToTag(), 50),
+                new ComplexRecipe.RecipeElement("Water".ToTag(), 10f)
               };
-              ComplexRecipe.RecipeElement[] recipeElementArray2 = new ComplexRecipe.RecipeElement[1]
-              {
-                new ComplexRecipe.RecipeElement((Tag) "Salsa", 1f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
-              };
+            ComplexRecipe.RecipeElement[] recipeElementArray2 = new ComplexRecipe.RecipeElement[1]
+            {
+                new ComplexRecipe.RecipeElement((Tag) "IronOre", 1f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
+            };
 
-              SalsaConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("GourmetCookingStation", (IList<ComplexRecipe.RecipeElement>)recipeElementArray1, (IList<ComplexRecipe.RecipeElement>)recipeElementArray2), recipeElementArray1, recipeElementArray2)
-              {
-                time = TUNING.FOOD.RECIPES.STANDARD_COOK_TIME,
-                description = (string)ITEMS.FOOD.SALSA.RECIPEDESC,
+            IronOre.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("OreMaker", (IList<ComplexRecipe.RecipeElement>)recipeElementArray1, (IList<ComplexRecipe.RecipeElement>)recipeElementArray2), recipeElementArray1, recipeElementArray2)
+            {
+                time = 30f,
+                description = "IronOre",
                 nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
                 fabricators = new List<Tag>()
                  {
-                     (Tag) "GourmetCookingStation"
+                     (Tag) "OreMaker"
                  },
                 sortOrder = 300
-              };
-            
-                if (!DlcManager.IsExpansion1Active())
-                 return;
+            };
+            /*
+            if (!DlcManager.IsExpansion1Active())
+                return;
+            */
 
 
         }

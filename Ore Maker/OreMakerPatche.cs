@@ -2,7 +2,7 @@ using HarmonyLib;
 
 namespace Ore_Maker
 {
-    public class Patches
+    public class OreMakerPatche
     {
         [HarmonyPatch(typeof(Db))]
         [HarmonyPatch("Initialize")]
