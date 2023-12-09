@@ -1,4 +1,5 @@
-﻿using Ore_Maker;
+﻿using Database;
+using Ore_Maker;
 using STRINGS;
 using System.Collections.Generic;
 using TUNING;
@@ -17,41 +18,61 @@ namespace OreMakerConfig
 
 
 
+        
+                public override BuildingDef CreateBuildingDef()
+                {
+                    int     width               = 4;
+                    int     height              = 3;
+                    string  anim                = "oremaker_kanim"; //not yet made
+                    int     hitpoints           = 25;
+                    float   construction_time   = 30f;
+                    float[] construction_mass   = TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER3; 
+                    string[] allMetals          = MATERIALS.ALL_METALS;
+                    float   melting_point       = 800f;
 
-        public override BuildingDef CreateBuildingDef()
-        {
-            int width = 4;
-            int height = 3;
-            string anim = "oremaker_kanim";
-            int hitpoints = 25;
-            float construction_time = 30f;
-            float[] tieR3_1 = BUILDING:CONSTRUCTION_MASS_KG.TIER3;
-            string[] allMetals = MATERIALS.ALL_METALS;
-            float melting_point = 800f;
-            BuildLocationRule buidingLocationRule = BuildLocationRule.OnFloor;
-            EffectorValues tieR3_2 = NOISE_POLLUTION.NOISY.TIER2;
-            EffectorValues tieR3_3 = BUILDINGS.DECOR.PENALTY.TIER3;
-            BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef("OreMaker", width, height, anim, hitpoints, construction_time, tieR3_1, allMetals, melting_point, buidingLocationRule, tieR3_3, tieR3_2);
-            buildingDef.RequiresPowerInput = true;
-            buildingDef.PowerInputOffset = new CellOffset(0, 0);
-            buildingDef.EnergyConsumptionWhenActive = 480f;
-            buildingDef.InputConduitType = ConduitType.Gas;
-            buildingDef.UtilityInputOffset = new CellOffset(-1, 2);
-            buildingDef.InputConduitType = ConduitType.Liquid;
-            buildingDef.UtilityInputOffset = new CellOffset(-1, 0);
-            buildingDef.AudioCategory = "HollowMetal";
-            buildingDef.SelfHeatKilowattsWhenActive = 10f;
-            buildingDef.ViewMode = OverlayModes.TileMode.ID;
-            buildingDef.ModifiesTemperature = false;
-            return buildingDef;
-        }
+                    BuildLocationRule buidingLocationRule   = BuildLocationRule.OnFloor;
+                    EffectorValues noise_penalty            = NOISE_POLLUTION.NOISY.TIER2;
+                    EffectorValues deco_penalty             = DECOR.PENALTY.TIER3; 
+
+                    BuildingDef buildingDef = BuildingTemplates.CreateBuildingDef(//Implementing the buildingdef values
+                        "OreMaker", 
+                        width, 
+                        height, 
+                        anim, 
+                        hitpoints, 
+                        construction_time, 
+                        construction_mass, 
+                        allMetals, melting_point, 
+                        buidingLocationRule, 
+                        deco_penalty, 
+                        noise_penalty
+                        );
+                    
+                    buildingDef.RequiresPowerInput          = true;
+                    buildingDef.PowerInputOffset            = new CellOffset(0, 0);
+                    buildingDef.EnergyConsumptionWhenActive = 480f;
+                    buildingDef.InputConduitType            = ConduitType.Gas;
+                    buildingDef.UtilityInputOffset          = new CellOffset(-1, 2);
+                    buildingDef.InputConduitType            = ConduitType.Liquid;
+                    buildingDef.UtilityInputOffset          = new CellOffset(-1, 0);
+                    buildingDef.AudioCategory               = "HollowMetal";
+                    buildingDef.SelfHeatKilowattsWhenActive = 10f;
+                    buildingDef.ViewMode                    = OverlayModes.TileMode.ID;
+                    buildingDef.ModifiesTemperature         = false;// for now
+                    return buildingDef;
+                }
+
+
+        //-----Templateb Building---------------------------------
 
         public override void ConfigureBuildingTemplate(GameObject go, Tag prefab_tag)
-        {
-            go.GetComponent.< KPrefabID > ().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);
-            go.AddOrGet<BuildingComplete>().isManuallyOperated = true;
-            go.AddOrGet<OreMaker.OreMake>().overpressureMass = 10f;
+        {   
+            go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);    //defines that the building is IndustrialMachinery
+            go.AddOrGet<BuildingComplete>().isManuallyOperated = true;                                  //makes that its operrated by a duplicant
+            go.AddOrGet<Ore_Maker.OreMaker>().overpressureMass = 10f;                                   //when too mutch pressure is present the building will stop working
             OreMaker fabricator = go.AddOrGet<OreMaker>();
+
+
 
             ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
             conduitConsumer.conduitType = ConduitType.Gas; 
@@ -68,7 +89,7 @@ namespace OreMakerConfig
             conduitConsumer1.alwaysConsume = false; // look at this maybe 
 
             //  \|/ May need some Work \|/
-            fabricator.sideScreenStyle = ComplexFabricatorSideScreen.StyleSetting.ListQueueHybrid;
+            OreMaker.fabricator.sideScreenStyle = ComplexFabricatorSideScreen.StyleSetting.ListQueueHybrid;
             go.AddOrGet<FabricatorIngredientStatusManager>();
             go.AddOrGet<CopyBuildingSettings>();
             go.AddOrGet<ComplexFabricatorWorkable>();
@@ -89,13 +110,14 @@ namespace OreMakerConfig
             });
 
         }
+        // \|/Need's work too
         public void ConfigureRecipes()
         {
             // Iron Ore Recipe
             ComplexRecipe.RecipeElement[] recipeElementArray1 = new ComplexRecipe.RecipeElement[3]
             {
                 new ComplexRecipe.RecipeElement(material: "Iron".ToTag(), 90f),
-                new ComplexRecipe.RecipeElement("Oxygen".ToTag(), 50),
+                new ComplexRecipe.RecipeElement("Oxygen".ToTag(), 50f),
                 new ComplexRecipe.RecipeElement("Water".ToTag(), 10f)
               };
             ComplexRecipe.RecipeElement[] recipeElementArray2 = new ComplexRecipe.RecipeElement[1]
