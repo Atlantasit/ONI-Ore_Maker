@@ -1,5 +1,6 @@
 OreMaker Mod made by Atlantasit / Cherayna
-
+inspiration taken from the Helium Extraktor mod from Pholith:
+https://steamcommunity.com/profiles/76561198263471888
 
 ---Recipes in this mod:------------------------------------------------
 
