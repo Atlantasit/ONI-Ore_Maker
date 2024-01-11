@@ -69,27 +69,27 @@ namespace OreMakerConfig
         {   
             go.GetComponent<KPrefabID>().AddTag(RoomConstraints.ConstraintTags.IndustrialMachinery);    //defines that the building is IndustrialMachinery
             go.AddOrGet<BuildingComplete>().isManuallyOperated = true;                                  //makes that its operrated by a duplicant
-            go.AddOrGet<Ore_Maker.OreMaker>().overpressureMass = 10f;                                   //when too mutch pressure is present the building will stop working
+          //go.AddOrGet<Ore_Maker.OreMaker>().overpressureMass = 10f;                                   //when too mutch pressure is present the building will stop working [not needed]
             OreMaker fabricator = go.AddOrGet<OreMaker>();
 
 
 
-            ConduitConsumer conduitConsumer = go.AddOrGet<ConduitConsumer>();
-            conduitConsumer.conduitType = ConduitType.Gas; 
-            conduitConsumer.capacityKG = OxyStorage_Capacity;
-            conduitConsumer.capacityTag = ElementLoader.FindElementByHash(SimHashes.Oxygen).tag;
-            conduitConsumer.wrongElementResult = ConduitConsumer.WrongElementResult.Dump;
-            conduitConsumer.alwaysConsume = false; // look at this maybe 
+            ConduitConsumer conduitConsumer     = go.AddOrGet<ConduitConsumer>();//Instuctions for the oxygen input
+            conduitConsumer.conduitType         = ConduitType.Gas; 
+            conduitConsumer.capacityKG          = OxyStorage_Capacity;
+            conduitConsumer.capacityTag         = ElementLoader.FindElementByHash(SimHashes.Oxygen).tag;
+            conduitConsumer.wrongElementResult  = ConduitConsumer.WrongElementResult.Dump;
+            conduitConsumer.alwaysConsume       = false; // look at this maybe 
 
-            ConduitConsumer conduitConsumer1 = go.AddOrGet<ConduitConsumer>();
-            conduitConsumer1.conduitType = ConduitType.Liquid;
-            conduitConsumer1.capacityKG = WaterStorage_Capacity;
-            conduitConsumer1.capacityTag = ElementLoader.FindElementByHash (SimHashes.Water).tag;
+            ConduitConsumer conduitConsumer1    = go.AddOrGet<ConduitConsumer>();//Instructions for the water input
+            conduitConsumer1.conduitType        = ConduitType.Liquid;
+            conduitConsumer1.capacityKG         = WaterStorage_Capacity;
+            conduitConsumer1.capacityTag        = ElementLoader.FindElementByHash (SimHashes.Water).tag;
             conduitConsumer1.wrongElementResult = ConduitConsumer.WrongElementResult.Dump;
-            conduitConsumer1.alwaysConsume = false; // look at this maybe 
+            conduitConsumer1.alwaysConsume      = false; // look at this maybe 
 
             //  \|/ May need some Work \|/
-            OreMaker.fabricator.sideScreenStyle = ComplexFabricatorSideScreen.StyleSetting.ListQueueHybrid;
+            OreMaker.Fabricator.sideScreenStyle = ComplexFabricatorSideScreen.StyleSetting.ListQueueHybrid;
             go.AddOrGet<FabricatorIngredientStatusManager>();
             go.AddOrGet<CopyBuildingSettings>();
             go.AddOrGet<ComplexFabricatorWorkable>();
@@ -97,7 +97,7 @@ namespace OreMakerConfig
             this.ConfigureRecipes();
             Prioritizable.AddRef(go);
         }
-        public override void DoPostConfigureComplete(GameObject go)
+        public override void DoPostConfigureComplete(GameObject go)//Duplicand level stuff
         {
             go.AddOrGetDef<PoweredActiveStoppableController.Def>();
             go.GetComponent<KPrefabID>().prefabSpawnFn += (KPrefabID.PrefabFn)(game_object =>
@@ -116,20 +116,20 @@ namespace OreMakerConfig
             // Iron Ore Recipe
             ComplexRecipe.RecipeElement[] recipeElementArrayIron1 = new ComplexRecipe.RecipeElement[3]
             {
-                new ComplexRecipe.RecipeElement(material: "Iron".ToTag(), 95f),
-                new ComplexRecipe.RecipeElement("Oxygen".ToTag(), 50f),
-                new ComplexRecipe.RecipeElement("Water".ToTag(), 10f)
+                new ComplexRecipe.RecipeElement(SimHashes.Iron.CreateTag(), 95f),
+                new ComplexRecipe.RecipeElement(SimHashes.Oxygen.CreateTag(), 50f),
+                new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), 10f)
               };
             ComplexRecipe.RecipeElement[] recipeElementArrayIron2 = new ComplexRecipe.RecipeElement[1]
             {
-                new ComplexRecipe.RecipeElement((Tag) "IronOre", 100f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
+                new ComplexRecipe.RecipeElement((Tag) SimHashes.IronOre.CreateTag(), 100f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
             };
 
-            IronOre.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("OreMaker", (IList<ComplexRecipe.RecipeElement>)recipeElementArrayIron1, (IList<ComplexRecipe.RecipeElement>)recipeElementArrayIron2), recipeElementArrayIron1, recipeElementArrayIron2)
+            ComplexRecipe complexRecipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("OreMaker", (IList<ComplexRecipe.RecipeElement>)recipeElementArrayIron1, (IList<ComplexRecipe.RecipeElement>)recipeElementArrayIron2), recipeElementArrayIron1, recipeElementArrayIron2)
             {
                 time = 30f,
                 description = "IronOre",
-                nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
+                nameDisplay = ComplexRecipe.RecipeNameDisplay.Result, 
                 fabricators = new List<Tag>()
                  {
                      (Tag) "OreMaker"

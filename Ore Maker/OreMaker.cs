@@ -1,6 +1,7 @@
 ﻿namespace Ore_Maker
 {
-    public class OreMaker : OilRefinery
+    public class OreMaker : Fabricator
     {
+        public static object Fabricator { get; internal set; }
     }
 }

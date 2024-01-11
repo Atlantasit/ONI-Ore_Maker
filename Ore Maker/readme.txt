@@ -18,9 +18,9 @@ https://github.com/Cairath/Oxygen-Not-Included-Modding
                     cobalt + water + O2         = cobalt_ore
 
 -Advanced Ore Maker: (coming soon ... i think)
-                    gold + meccury[still needs to be implemented]   = goldamalgam
+                    gold + meccury [still needs to be implemented]           = goldamalgam
                     DLC:
-                    depleted uranium + somthing quite expensive     = uranium_ore
+                    depleted uranium + somthing quite expensive (Niobium)    = uranium_ore
 -------------------------------------------------------------------------
 Copright and co.
 
