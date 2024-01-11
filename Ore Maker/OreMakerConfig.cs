@@ -114,21 +114,45 @@ namespace OreMakerConfig
         public void ConfigureRecipes()
         {
             // Iron Ore Recipe
-            ComplexRecipe.RecipeElement[] recipeElementArray1 = new ComplexRecipe.RecipeElement[3]
+            ComplexRecipe.RecipeElement[] recipeElementArrayIron1 = new ComplexRecipe.RecipeElement[3]
             {
-                new ComplexRecipe.RecipeElement(material: "Iron".ToTag(), 90f),
+                new ComplexRecipe.RecipeElement(material: "Iron".ToTag(), 95f),
                 new ComplexRecipe.RecipeElement("Oxygen".ToTag(), 50f),
                 new ComplexRecipe.RecipeElement("Water".ToTag(), 10f)
               };
-            ComplexRecipe.RecipeElement[] recipeElementArray2 = new ComplexRecipe.RecipeElement[1]
+            ComplexRecipe.RecipeElement[] recipeElementArrayIron2 = new ComplexRecipe.RecipeElement[1]
             {
-                new ComplexRecipe.RecipeElement((Tag) "IronOre", 1f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
+                new ComplexRecipe.RecipeElement((Tag) "IronOre", 100f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
             };
 
-            IronOre.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("OreMaker", (IList<ComplexRecipe.RecipeElement>)recipeElementArray1, (IList<ComplexRecipe.RecipeElement>)recipeElementArray2), recipeElementArray1, recipeElementArray2)
+            IronOre.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("OreMaker", (IList<ComplexRecipe.RecipeElement>)recipeElementArrayIron1, (IList<ComplexRecipe.RecipeElement>)recipeElementArrayIron2), recipeElementArrayIron1, recipeElementArrayIron2)
             {
                 time = 30f,
                 description = "IronOre",
+                nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
+                fabricators = new List<Tag>()
+                 {
+                     (Tag) "OreMaker"
+                 },
+                sortOrder = 300
+            };
+
+            // Copper Ore Recipe
+            ComplexRecipe.RecipeElement[] recipeElementArrayCopper1 = new ComplexRecipe.RecipeElement[3]
+            {
+                new ComplexRecipe.RecipeElement(material: "Copper".ToTag(), 95f),
+                new ComplexRecipe.RecipeElement("Oxygen".ToTag(), 50f),
+                new ComplexRecipe.RecipeElement("Water".ToTag(), 10f)
+              };
+            ComplexRecipe.RecipeElement[] recipeElementArrayCopper2 = new ComplexRecipe.RecipeElement[1]
+            {
+                new ComplexRecipe.RecipeElement((Tag) "CopperOre", 100f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
+            };
+
+            CopperOre.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("OreMaker", (IList<ComplexRecipe.RecipeElement>)recipeElementArrayCopper1, (IList<ComplexRecipe.RecipeElement>)recipeElementArrayCopper2), recipeElementArrayCopper1, recipeElementArrayCopper2)
+            {
+                time = 30f,
+                description = "CopperOre",
                 nameDisplay = ComplexRecipe.RecipeNameDisplay.Result,
                 fabricators = new List<Tag>()
                  {
