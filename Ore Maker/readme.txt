@@ -19,6 +19,7 @@ https://github.com/Cairath/Oxygen-Not-Included-Modding
 
 -Advanced Ore Maker: (coming soon ... i think)
                     gold + meccury [still needs to be implemented]           = goldamalgam
+                    gold + silver [is not in game]                           = electrum
                     DLC:
                     depleted uranium + somthing quite expensive (Niobium)    = uranium_ore
 -------------------------------------------------------------------------

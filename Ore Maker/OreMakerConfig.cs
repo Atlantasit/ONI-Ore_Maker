@@ -140,13 +140,13 @@ namespace OreMakerConfig
             // Copper Ore Recipe
             ComplexRecipe.RecipeElement[] recipeElementArrayCopper1 = new ComplexRecipe.RecipeElement[3]
             {
-                new ComplexRecipe.RecipeElement(material: "Copper".ToTag(), 95f),
-                new ComplexRecipe.RecipeElement("Oxygen".ToTag(), 50f),
-                new ComplexRecipe.RecipeElement("Water".ToTag(), 10f)
+                new ComplexRecipe.RecipeElement(SimHashes.Copper.CreateTag(), 95f),
+                new ComplexRecipe.RecipeElement(SimHashes.Oxygen.CreateTag(), 50f),
+                new ComplexRecipe.RecipeElement(SimHashes.Water.CreateTag(), 10f)
               };
             ComplexRecipe.RecipeElement[] recipeElementArrayCopper2 = new ComplexRecipe.RecipeElement[1]
             {
-                new ComplexRecipe.RecipeElement((Tag) "CopperOre", 100f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
+                new ComplexRecipe.RecipeElement((Tag) SimHashes.CopperOre.CreateTag(), 100f, ComplexRecipe.RecipeElement.TemperatureOperation.Heated)
             };
 
             CopperOre.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("OreMaker", (IList<ComplexRecipe.RecipeElement>)recipeElementArrayCopper1, (IList<ComplexRecipe.RecipeElement>)recipeElementArrayCopper2), recipeElementArrayCopper1, recipeElementArrayCopper2)
